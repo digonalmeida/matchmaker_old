@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1441098506 source:/home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/main.cpp
+	<iostream>
+	<gtest/gtest.h>
+
+1440905927 source:/home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/other tests.cpp
+	<iostream>
+	<gtest/gtest.h>
+
+1441097478 source:/home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/customobject.cpp
+	<iostream>
+	<string>
+	<boost/any.hpp>
+	<gtest/gtest.h>
+
