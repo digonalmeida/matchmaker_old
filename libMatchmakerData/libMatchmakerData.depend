@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1441131503 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/customobject.cpp
+	"../include/matchmakerdata/customobject.h"
+	<stdexcept>
+
+1441126148 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/customobject.h
+	<boost/optional.hpp>
+	<boost/any.hpp>
+	<boost/cast.hpp>
+	<string>
+	<map>
+

@@ -2,21 +2,22 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ut_libMatchMakerData" />
+		<Option title="libMatchmakerData" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/ut_libMatchMakerData" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/libMatchmakerData" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option host_application="xterm -t /home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/bin/Release/ut_libMatchMakerData" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/ut_libMatchMakerData" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/libMatchmakerData" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -27,12 +28,13 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
-			<Target title="libmatchmakingdata">
-				<Option output="libut_libMatchMakerData" prefix_auto="1" extension_auto="1" />
+			<Target title="libMatchmakerData">
+				<Option output="bin/libmatchmakerdata" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
-				<Option object_output="obj/libmatchmakingdata/" />
+				<Option object_output="obj/libMatchmakerData/" />
 				<Option type="2" />
 				<Option compiler="gcc" />
+				<Option host_application="xterm -t /home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/bin/Release/ut_libMatchMakerData" />
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-O2" />
@@ -40,21 +42,17 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="../tests/ut_libMatchMakerData/bin/Debug/ut_libMatchMakerData" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="../../libMatchmakerData/include" />
 		</Compiler>
-		<Linker>
-			<Add option="-lgtest" />
-			<Add option="-pthread" />
-			<Add option="-lmatchmakerdata" />
-			<Add directory="../../libMatchmakerData/bin" />
-		</Linker>
-		<Unit filename="main.cpp" />
-		<Unit filename="main.h" />
-		<Unit filename="ut_customobject.cpp" />
+		<Unit filename="include/matchmakerdata/customobject.h" />
+		<Unit filename="src/customobject.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
