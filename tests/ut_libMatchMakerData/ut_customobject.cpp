@@ -9,10 +9,9 @@
 
 TEST (CustomObject, addField) {
     mm::CustomObject customObject;
-    EXPECT_THROW(customObject.get("field"), mm::Unknown_Field);
+    EXPECT_THROW(customObject.get<std::string>("field"), mm::Unknown_Field);
     customObject.addField("field");
-    mm::CustomValue field;
-    EXPECT_NO_THROW(field = customObject.get("field"));
+    EXPECT_FALSE(customObject.get<std::string>("field"));
 }
 
 TEST(CustomObject, setValue){
@@ -20,32 +19,33 @@ TEST(CustomObject, setValue){
     mm::CustomObject customObject;
     customObject.addField("field");
 
-    customObject.set("field", std::string("teste"));
-    mm::CustomValue fieldValue;
-
-    EXPECT_NO_THROW(fieldValue = customObject.get("field"));
+    customObject.set<std::string>("field", "teste");
+    boost::optional<std::string> fieldValue;
+    fieldValue = customObject.get<std::string>("field");
 
     EXPECT_TRUE(fieldValue);
 
-    EXPECT_EQ(boost::any_cast<std::string>(*fieldValue), std::string("teste"));
+    EXPECT_EQ(boost::any_cast<std::string>(*fieldValue).c_str(), std::string("teste"));
 }
 
 TEST(CustomObject, getNullValue){
     mm::CustomObject customObject;
     customObject.addField("field");
-    customObject.set("field", boost::none);
-    mm::CustomValue fieldValue = customObject.get("field");
+    boost::optional<std::string> fieldValue = customObject.get<std::string>("field");
     EXPECT_FALSE(fieldValue);
 }
 
 TEST(CustomObject, getValue){
     mm::CustomObject customObject;
     customObject.addField("field");
-    customObject.set("field", std::string("valor"));
-    mm::CustomValue fieldValue = customObject.get("field");
-    std::string strValue = boost::any_cast<std::string>(*fieldValue);
+    customObject.set<std::string>("field", "valor");
+    boost::optional<std::string> fieldValue = customObject.get<std::string>("field");
+    std::string strValue = *fieldValue;
+    EXPECT_TRUE(fieldValue);
+    EXPECT_EQ(strValue, std::string("valor"));
 }
+
 TEST(Boost, optionalNull){
-    mm::CustomValue c = boost::none;
+    boost::optional<boost::any> c = boost::none;
     EXPECT_FALSE(c);
 }
