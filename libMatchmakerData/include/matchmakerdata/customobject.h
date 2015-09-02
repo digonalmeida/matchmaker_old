@@ -23,8 +23,9 @@ public:
     ~CustomObject() {}
 
     //throws mm::Unknown_Field and boost::bad_any_cast
-    //returns false opetional if value is null
-    template<typename T> boost::optional<T> get(std::string fieldName);
+    //returns false if value is null
+    template<typename T>
+    bool get(const std::string fieldName, T &output);
     void addField(std::string fieldName);
     template<typename T>
     void set(std::string fieldName, T fieldValue);
@@ -33,7 +34,7 @@ private:
     std::map<std::string, boost::optional<boost::any> > customFields_;
 };
 
-template <typename T> boost::optional<T> mm::CustomObject::get(std::string fieldName)
+template <typename T> bool mm::CustomObject::get(const std::string fieldName, T &output)
 {
     boost::optional<boost::any> val;
 
@@ -45,11 +46,11 @@ template <typename T> boost::optional<T> mm::CustomObject::get(std::string field
     }
 
     if(!val){
-        return boost::none;
+        return false;
     }
 
-    T ret = boost::any_cast<T>(*val);
-    return ret;
+    output = boost::any_cast<T>(*val);
+    return true;
 }
 
 template <typename T> void mm::CustomObject::set(std::string fieldName, T value)

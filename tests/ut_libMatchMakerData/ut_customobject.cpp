@@ -9,9 +9,10 @@
 
 TEST (CustomObject, addField) {
     mm::CustomObject customObject;
-    EXPECT_THROW(customObject.get<std::string>("field"), mm::Unknown_Field);
+    std::string s;
+    EXPECT_THROW(customObject.get<std::string>("field", s), mm::Unknown_Field);
     customObject.addField("field");
-    EXPECT_FALSE(customObject.get<std::string>("field"));
+    EXPECT_FALSE(customObject.get<std::string>("field", s));
 }
 
 TEST(CustomObject, setValue){
@@ -20,29 +21,30 @@ TEST(CustomObject, setValue){
     customObject.addField("field");
 
     customObject.set<std::string>("field", "teste");
-    boost::optional<std::string> fieldValue;
-    fieldValue = customObject.get<std::string>("field");
+    std::string fieldValue;
+    bool getWorked = customObject.get<std::string>("field", fieldValue);
 
-    EXPECT_TRUE(fieldValue);
+    EXPECT_TRUE(getWorked);
 
-    EXPECT_EQ(boost::any_cast<std::string>(*fieldValue).c_str(), std::string("teste"));
+    EXPECT_EQ(fieldValue, std::string("teste"));
 }
 
 TEST(CustomObject, getNullValue){
     mm::CustomObject customObject;
     customObject.addField("field");
-    boost::optional<std::string> fieldValue = customObject.get<std::string>("field");
-    EXPECT_FALSE(fieldValue);
+    std::string fieldValue;
+    bool worked = customObject.get<std::string>("field", fieldValue);
+    EXPECT_FALSE(worked);
 }
 
 TEST(CustomObject, getValue){
     mm::CustomObject customObject;
     customObject.addField("field");
     customObject.set<std::string>("field", "valor");
-    boost::optional<std::string> fieldValue = customObject.get<std::string>("field");
-    std::string strValue = *fieldValue;
-    EXPECT_TRUE(fieldValue);
-    EXPECT_EQ(strValue, std::string("valor"));
+    std::string fieldValue;
+    bool worked = customObject.get<std::string>("field", fieldValue);
+    EXPECT_TRUE(worked);
+    EXPECT_EQ(fieldValue, std::string("valor"));
 }
 
 TEST(Boost, optionalNull){
