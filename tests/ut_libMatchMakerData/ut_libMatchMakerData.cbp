@@ -28,7 +28,7 @@
 				</Linker>
 			</Target>
 			<Target title="libmatchmakingdata">
-				<Option output="libut_libMatchMakerData" prefix_auto="1" extension_auto="1" />
+				<Option output="ut_libMatchMakerData" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj/libmatchmakingdata/" />
 				<Option type="2" />
@@ -43,18 +43,23 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++0x" />
 			<Add option="-Wall" />
 			<Add directory="../../libMatchmakerData/include" />
+			<Add directory="/usr/local/include/soci" />
+			<Add directory="/usr/include/postgresql/" />
 		</Compiler>
 		<Linker>
 			<Add option="-lgtest" />
 			<Add option="-pthread" />
 			<Add option="-lmatchmakerdata" />
+			<Add option="-lsoci_core" />
+			<Add option="-lsoci_postgresql" />
 			<Add directory="../../libMatchmakerData/bin" />
 		</Linker>
 		<Unit filename="main.cpp" />
-		<Unit filename="main.h" />
 		<Unit filename="ut_customobject.cpp" />
+		<Unit filename="ut_databasemanager.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

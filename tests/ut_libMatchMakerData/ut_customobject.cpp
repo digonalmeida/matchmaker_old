@@ -5,6 +5,7 @@
 #include <boost/cast.hpp>
 #include <gtest/gtest.h>
 #include <boost/optional.hpp>
+#include <exception>
 //using namespace std;
 
 TEST (CustomObject, addField) {
