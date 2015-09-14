@@ -2,6 +2,7 @@
 #include <string>
 #include <matchmakerdata/dbconnection.h>
 #include <memory>
+#include <gtest/gtest.h>
 
 using namespace std;
 
