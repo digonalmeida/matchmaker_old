@@ -11,28 +11,31 @@ namespace mm
 {
 class Unknown_Field {}; //exception
 class Null_Field{};
-class CustomObject;
-};
 
-using namespace mm;
-
-class mm::CustomObject
+class CustomObject
 {
 public:
     CustomObject() {}
     ~CustomObject() {}
 
+
+    void addField(std::string fieldName);
+
     //throws mm::Unknown_Field and boost::bad_any_cast
     //returns false if value is null
     template<typename T>
     bool get(const std::string fieldName, T &output);
-    void addField(std::string fieldName);
+
+    //throws mm::Unknown_Field
     template<typename T>
     void set(std::string fieldName, T fieldValue);
 
 private:
     std::map<std::string, boost::optional<boost::any> > customFields_;
 };
+
+};
+
 
 template <typename T> bool mm::CustomObject::get(const std::string fieldName, T &output)
 {
