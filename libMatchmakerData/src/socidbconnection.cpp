@@ -1,17 +1,19 @@
 #include "socidbconnection.h"
+
 #include <iostream>
-SOCIDBConnection::SOCIDBConnection()
+namespace mm{
+SociDbConnection::SociDbConnection()
 {
     //ctor
     m_type = "SOCI";
     m_isConnected = true;
 }
 
-SOCIDBConnection::~SOCIDBConnection()
+SociDbConnection::~SociDbConnection()
 {
     //dtor
 }
-bool SOCIDBConnection::connect(std::string type, std::string host, std::string user, std::string pass, std::string database)
+bool SociDbConnection::connect(std::string type, std::string host, std::string user, std::string pass, std::string database)
 {
     m_isConnected = true;
     m_session = std::shared_ptr<soci::session>(new soci::session());
@@ -26,3 +28,4 @@ bool SOCIDBConnection::connect(std::string type, std::string host, std::string u
         return false;
     }
 }
+};

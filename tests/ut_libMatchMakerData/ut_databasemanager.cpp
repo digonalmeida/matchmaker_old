@@ -14,8 +14,8 @@ using namespace std;
 #define CONNECTION_DB "teste"
 
 TEST (DatabaseManager, postgresConnection) {
-    mm::DBConnectionFactory factory;
-    shared_ptr<mm::DBConnection> con = factory.makeConnection(CONNECTION_TYPE_POSTGRES,
+    mm::DbConnectionFactory factory;
+    shared_ptr<mm::DbConnection> con = factory.makeConnection(CONNECTION_TYPE_POSTGRES,
                                                                                 CONNECTION_HOST,
                                                                                 CONNECTION_USER,
                                                                                 CONNECTION_PASS,
@@ -27,7 +27,7 @@ TEST (DatabaseManager, postgresConnection) {
 }
 
 TEST (DatabaseManager, postgresConnectionWrongPassword) {
-mm::DBConnectionFactory factory;
+mm::DbConnectionFactory factory;
     EXPECT_ANY_THROW(factory.makeConnection(CONNECTION_TYPE_POSTGRES,
                                                              CONNECTION_HOST,
                                                              CONNECTION_USER,

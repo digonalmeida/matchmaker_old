@@ -59,6 +59,7 @@
 		</Linker>
 		<Unit filename="main.cpp" />
 		<Unit filename="ut_customobject.cpp" />
+		<Unit filename="ut_customobjectdao.cpp" />
 		<Unit filename="ut_databasemanager.cpp" />
 		<Extensions>
 			<code_completion />

@@ -1,18 +1,17 @@
 #ifndef DBCONNECTIONFACTORY_H
 #define DBCONNECTIONFACTORY_H
 
-#include "dbconnection.h"
 #include <string>
 #include <memory>
 
 namespace mm{
-    class DBConnectionFactory;
+    class DbConnection;
 
-class DBConnectionFactory
+class DbConnectionFactory
 {
     public:
-        DBConnectionFactory();
-        std::shared_ptr<DBConnection> makeConnection(std::string type, std::string host, std::string user, std::string pass, std::string database);
+        DbConnectionFactory();
+        std::shared_ptr<DbConnection> makeConnection(std::string type, std::string host, std::string user, std::string pass, std::string database);
     protected:
     private:
 };

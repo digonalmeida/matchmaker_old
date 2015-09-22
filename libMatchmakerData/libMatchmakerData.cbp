@@ -68,6 +68,7 @@
 			<Add option="-lpthread" />
 		</Linker>
 		<Unit filename="include/matchmakerdata/customobject.h" />
+		<Unit filename="include/matchmakerdata/customobjectdao.h" />
 		<Unit filename="include/matchmakerdata/dbconnection.h" />
 		<Unit filename="include/matchmakerdata/dbconnectionfactory.h" />
 		<Unit filename="include/matchmakerdata/socidbconnection.h" />

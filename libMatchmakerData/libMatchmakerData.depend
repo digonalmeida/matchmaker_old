@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1442192437 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/customobject.cpp
+1442272839 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/customobject.cpp
 	"../include/matchmakerdata/customobject.h"
 
-1442191557 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/customobject.h
+1442774851 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/customobject.h
 	<boost/optional.hpp>
 	<boost/any.hpp>
 	<boost/cast.hpp>
@@ -10,29 +10,28 @@
 	<map>
 	<stdexcept>
 
-1442198426 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/dbconnectionfactory.cpp
+1442795224 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/dbconnectionfactory.cpp
 	"dbconnectionfactory.h"
 	"socidbconnection.h"
 
-1442190611 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/dbconnectionfactory.h
-	"dbconnection.h"
+1442795173 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/dbconnectionfactory.h
 	<string>
 	<memory>
 
-1442191026 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/dbconnection.h
+1442795012 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/dbconnection.h
 	<string>
+	"customobjectdao.h"
 
-1442198409 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/socidbconnection.cpp
+1442794670 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/src/socidbconnection.cpp
 	"socidbconnection.h"
 	<iostream>
 
-1442197319 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/socidbconnection.h
+1442794538 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/socidbconnection.h
 	<memory>
-	"dbconnection.h"
-	<soci/session.h>
 	<soci/session.h>
 	<soci/postgresql/soci-postgresql.h>
 	<soci/session.h>
+	"dbconnection.h"
 
 1428525120 /usr/local/include/soci/session.h
 	"once-temp-type.h"
@@ -186,4 +185,14 @@
 	"pg_config_ext.h"
 
 1434563533 /usr/include/postgresql//pg_config_ext.h
+
+1442276472 source:/home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/customobjectdao.cpp
+	"customobjectdao.h"
+	<memory>
+
+1442793789 /home/rodrigo/dev/matchmaker/libMatchmakerData/include/matchmakerdata/customobjectdao.h
+	<string>
+	"customobject.h"
+	"dbconnection.h"
+	"socidbconnection.h"
 

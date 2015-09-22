@@ -9,6 +9,7 @@
 
 namespace mm
 {
+
 class Unknown_Field {}; //exception
 class Null_Field{};
 
