@@ -5,13 +5,19 @@
 #include <memory>
 
 namespace mm{
-    class DbConnection;
+
+class DbConnection;
 
 class DbConnectionFactory
 {
     public:
         DbConnectionFactory();
-        std::shared_ptr<DbConnection> makeConnection(std::string type, std::string host, std::string user, std::string pass, std::string database);
+
+        enum ConnectionType{
+            CONNECTION_TYPE_SOCI_POSTGRESQL
+        };
+
+        std::shared_ptr<DbConnection> makeConnection(ConnectionType type, std::string host, std::string user, std::string pass, std::string database);
     protected:
     private:
 };

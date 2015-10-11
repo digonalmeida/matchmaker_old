@@ -10,13 +10,25 @@
 
 namespace mm{
 
+class CustomObjectDaoSoci;
+
 class SociDbConnection : public DbConnection {
     public:
         SociDbConnection();
-        bool connect(std::string type, std::string host, std::string user, std::string pass, std::string database);
+
+        enum DatabaseDriver{
+            POSTGRESQL
+        };
+
+        bool connect(DatabaseDriver driver, std::string host, std::string user, std::string pass, std::string database);
         ~SociDbConnection();
+
         std::shared_ptr<soci::session> session() { return m_session; }
+        std::shared_ptr<CustomObjectDao> customObjectDao();
+
     protected:
+        std::shared_ptr<CustomObjectDaoSoci> m_customObjectDao;
+
     private:
         std::shared_ptr<soci::session> m_session;
 };
