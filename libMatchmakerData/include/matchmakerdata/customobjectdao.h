@@ -1,25 +1,25 @@
 #ifndef CUSTOMOBJECTDAO_H
 #define CUSTOMOBJECTDAO_H
-
 #include <string>
-
 #include "customobject.h"
-#include "dbconnection.h"
 
 using namespace std;
 
 namespace mm{
 
+class DbConnection;
+
 class CustomObjectDao{
 
 public:
-    bool load(string table, string filter, CustomObject& output);
-    bool save(const CustomObject& object);
+    virtual bool load(std::string table, std::string filter, CustomObject& output) = 0;
+    virtual bool save(const CustomObject& object, const std::string& table) = 0;
 
-    string getError();
+    std::string getError() { return m_error; }
 
 protected:
-    string error;
+    std::string m_error;
+    DbConnection* m_dbConnection;
 };
 
 };
