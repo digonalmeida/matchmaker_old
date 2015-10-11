@@ -11,7 +11,7 @@ namespace mm
 {
 
 class Unknown_Field {}; //exception
-class Null_Field{};
+class Null_Field {};
 
 class CustomObject
 {
@@ -19,53 +19,61 @@ public:
     CustomObject() {}
     ~CustomObject() {}
 
-
-    void addField(std::string fieldName);
+    void addField(const std::string &fieldName);
+    bool contains(const std::string &fieldName) const;
+    bool isNull(const std::string &fieldName) const;
 
     //throws mm::Unknown_Field and boost::bad_any_cast
     //returns false if value is null
-    template<typename T>
-    bool get(const std::string fieldName, T &output);
+    template<typename T> T value(const std::string &fieldName) const;
+    template<typename T> T get(const std::string &fieldName) const
+    {
+        return value<T>(fieldName);
+    };
 
     //throws mm::Unknown_Field
     template<typename T>
-    void set(std::string fieldName, T fieldValue);
+    void set(const std::string &fieldName, T fieldValue);
 
 private:
-    std::map<std::string, boost::optional<boost::any> > customFields_;
+    std::map<std::string, boost::optional<boost::any> > m_customFields;
 };
 
-};
 
 
-template <typename T> bool mm::CustomObject::get(const std::string fieldName, T &output)
+template <typename T> T CustomObject::value(const std::string &fieldName) const
 {
     boost::optional<boost::any> val;
+    T output;
 
-    try{
-        val = customFields_.at(fieldName);
-    }
-    catch(std::out_of_range error){
+    if(!contains(fieldName))
+    {
         throw mm::Unknown_Field();
     }
-
-    if(!val){
-        return false;
+    if(isNull(fieldName))
+    {
+        throw mm::Null_Field();
     }
+
+    val = m_customFields.at(fieldName);
 
     output = boost::any_cast<T>(*val);
-    return true;
+    return output;
 }
 
-template <typename T> void mm::CustomObject::set(std::string fieldName, T value)
+template <typename T> void CustomObject::set(const std::string &fieldName, T value)
 {
-    try{
-        boost::optional<boost::any> val = customFields_.at(fieldName);
+    try
+    {
+        boost::optional<boost::any> val = m_customFields.at(fieldName);
     }
-    catch(std::out_of_range error){
+    catch(std::out_of_range error)
+    {
         throw mm::Unknown_Field();
     }
 
-    customFields_[fieldName] = boost::any(value);
+    m_customFields[fieldName] = boost::any(value);
+}
+
 }
 #endif //MATCHMAKERDATA_H
