@@ -69,10 +69,12 @@
 		</Linker>
 		<Unit filename="include/matchmakerdata/customobject.h" />
 		<Unit filename="include/matchmakerdata/customobjectdao.h" />
+		<Unit filename="include/matchmakerdata/customobjectdaosoci.h" />
 		<Unit filename="include/matchmakerdata/dbconnection.h" />
 		<Unit filename="include/matchmakerdata/dbconnectionfactory.h" />
 		<Unit filename="include/matchmakerdata/socidbconnection.h" />
 		<Unit filename="src/customobject.cpp" />
+		<Unit filename="src/customobjectdaosoci.cpp" />
 		<Unit filename="src/dbconnectionfactory.cpp" />
 		<Unit filename="src/socidbconnection.cpp" />
 		<Extensions>

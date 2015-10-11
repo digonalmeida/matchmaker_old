@@ -7,7 +7,7 @@
 #include <matchmakerdata/customobjectdao.h>
 #include <matchmakerdata/dbconnection.h>
 
-#define CONNECTION_TYPE_POSTGRES "postgres"
+#define CONNECTION_TYPE_POSTGRES mm::DbConnectionFactory::CONNECTION_TYPE_SOCI_POSTGRESQL
 #define CONNECTION_HOST "localhost"
 #define CONNECTION_USER "matchmaker"
 #define CONNECTION_PASS "matchmaker"
@@ -29,9 +29,18 @@ shared_ptr<mm::DbConnection> loadConnection(){
 
 TEST (CustomObjectDao, constructor) {
     shared_ptr<mm::DbConnection> con = loadConnection();
-    shared_ptr<mm::CustomObjectDao> coDao = con->customObjectDao();
+    shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
+    bool nullConnection = false;
+    if(!customObjectDao)
+        nullConnection = true;
+    EXPECT_FALSE(nullConnection);
 }
 
 TEST (CustomObjectDao, load) {
-
+//    shared_ptr<mm::DbConnection> con = loadConnection();
+//    shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
+//    mm::CustomObject customObject;
+//    std::string name;
+//    bool encontrou = customObject.get<std::string>("name", name);
+//    std::cout << "name";
 }

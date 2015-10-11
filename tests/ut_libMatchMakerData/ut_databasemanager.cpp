@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define CONNECTION_TYPE_POSTGRES "postgres"
+#define CONNECTION_TYPE_POSTGRES mm::DbConnectionFactory::CONNECTION_TYPE_SOCI_POSTGRESQL
 #define CONNECTION_HOST "localhost"
 #define CONNECTION_USER "matchmaker"
 #define CONNECTION_PASS "matchmaker"
@@ -20,6 +20,7 @@ TEST (DatabaseManager, postgresConnection) {
                                                                                 CONNECTION_USER,
                                                                                 CONNECTION_PASS,
                                                                                 CONNECTION_DB);
+
 
     EXPECT_EQ(con->type(), "SOCI");
     EXPECT_TRUE(con->isConnected());
