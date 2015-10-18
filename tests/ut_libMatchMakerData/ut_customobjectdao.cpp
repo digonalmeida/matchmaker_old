@@ -39,6 +39,7 @@ TEST (CustomObjectDao, load_bad_filter){
     mm::CustomObject customObject;
     bool loaded = customObjectDao->load("profile", "name liake 'asdfasdf'", &customObject);
     EXPECT_FALSE(loaded);
+    EXPECT_FALSE(customObject.customPropertiesLoaded());
 }
 
 TEST (CustomObjectDao, load) {
@@ -60,7 +61,7 @@ TEST (CustomObjectDao, load) {
             std::string name = customObject.get<std::string>("name");
             int nNamePos = name.find("Rodrigo");
             EXPECT_TRUE(nNamePos != string::npos);
-            std::cout << "[        ] " << "name: " << name << endl;
+            EXPECT_TRUE(customObject.customPropertiesLoaded());
         }
     }
 }
