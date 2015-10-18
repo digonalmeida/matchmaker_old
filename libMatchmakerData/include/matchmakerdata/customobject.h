@@ -35,7 +35,7 @@ public:
     template<typename T>
     void set(const std::string &fieldName, T fieldValue);
 
-private:
+protected:
     std::map<std::string, boost::optional<boost::any> > m_customFields;
 };
 
