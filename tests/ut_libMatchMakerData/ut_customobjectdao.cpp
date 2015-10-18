@@ -34,13 +34,25 @@ TEST (CustomObjectDao, constructor) {
 }
 
 TEST (CustomObjectDao, load) {
+
     shared_ptr<mm::DbConnection> con = loadConnection();
-    mm::CustomObjectDao* customObjectDao = con->customObjectDao();
+    shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
     mm::CustomObject customObject;
-    bool loaded = customObjectDao->load("player", "name like '%Rodrigo%'", &customObject);
+    bool loaded = customObjectDao->load("profile", "name like '%Rodrigo%'", &customObject);
     EXPECT_TRUE(loaded);
-    std::string name = customObject.get<std::string>("name");
-    std::cout << name;
-    int nNamePos = name.find("Rodrigo");
-    EXPECT_TRUE(nNamePos != string::npos);
+    if(loaded)
+    {
+        bool contains = customObject.contains("name");
+        bool isNull = customObject.isNull("name");
+
+        EXPECT_TRUE(contains);
+        EXPECT_FALSE(isNull);
+        if(contains && !isNull)
+        {
+            std::string name = customObject.get<std::string>("name");
+            int nNamePos = name.find("Rodrigo");
+            EXPECT_TRUE(nNamePos != string::npos);
+            std::cout << "[        ] " << "name: " << name << endl;
+        }
+    }
 }
