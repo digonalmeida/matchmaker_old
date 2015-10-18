@@ -37,7 +37,7 @@ TEST (CustomObjectDao, load_bad_filter){
     shared_ptr<mm::DbConnection> con = loadConnection();
     shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
     mm::CustomObject customObject;
-    bool loaded = customObjectDao->load("profile", "name like 'asdfasdf'", &customObject);
+    bool loaded = customObjectDao->load("profile", "name liake 'asdfasdf'", &customObject);
     EXPECT_FALSE(loaded);
 }
 
