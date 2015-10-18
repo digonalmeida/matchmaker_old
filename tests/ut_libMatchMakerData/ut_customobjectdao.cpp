@@ -30,17 +30,17 @@ shared_ptr<mm::DbConnection> loadConnection(){
 TEST (CustomObjectDao, constructor) {
     shared_ptr<mm::DbConnection> con = loadConnection();
     shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
-    bool nullConnection = false;
-    if(!customObjectDao)
-        nullConnection = true;
-    EXPECT_FALSE(nullConnection);
+    EXPECT_FALSE(customObjectDao.get() == NULL);
 }
 
 TEST (CustomObjectDao, load) {
-//    shared_ptr<mm::DbConnection> con = loadConnection();
-//    shared_ptr<mm::CustomObjectDao> customObjectDao = con->customObjectDao();
-//    mm::CustomObject customObject;
-//    std::string name;
-//    bool encontrou = customObject.get<std::string>("name", name);
-//    std::cout << "name";
+    shared_ptr<mm::DbConnection> con = loadConnection();
+    mm::CustomObjectDao* customObjectDao = con->customObjectDao();
+    mm::CustomObject customObject;
+    bool loaded = customObjectDao->load("player", "name like '%Rodrigo%'", &customObject);
+    EXPECT_TRUE(loaded);
+    std::string name = customObject.get<std::string>("name");
+    std::cout << name;
+    int nNamePos = name.find("Rodrigo");
+    EXPECT_TRUE(nNamePos != string::npos);
 }
