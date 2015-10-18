@@ -16,12 +16,20 @@ class Null_Field {};
 class CustomObject
 {
 public:
-    CustomObject() {}
+    CustomObject() {
+        m_customPropertiesLoaded = false;
+    }
     ~CustomObject() {}
 
     void addField(const std::string &fieldName);
     bool contains(const std::string &fieldName) const;
     bool isNull(const std::string &fieldName) const;
+    bool customPropertiesLoaded() const {
+        return m_customPropertiesLoaded;
+    };
+    void setCustomPropertiesLoaded(bool b){
+        m_customPropertiesLoaded = b;
+    }
 
     //throws mm::Unknown_Field and boost::bad_any_cast
     //returns false if value is null
@@ -37,6 +45,7 @@ public:
 
 protected:
     std::map<std::string, boost::optional<boost::any> > m_customFields;
+    bool m_customPropertiesLoaded;
 };
 
 
