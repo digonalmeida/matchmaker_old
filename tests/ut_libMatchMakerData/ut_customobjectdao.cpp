@@ -11,7 +11,7 @@
 #define CONNECTION_HOST "localhost"
 #define CONNECTION_USER "matchmaker"
 #define CONNECTION_PASS "matchmaker"
-#define CONNECTION_DB "teste"
+#define CONNECTION_DB "matchmaker"
 
 using namespace std;
 
