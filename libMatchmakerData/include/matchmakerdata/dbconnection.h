@@ -6,8 +6,6 @@
 
 namespace mm{
 
-class CustomObjectDao;
-
 class DbConnection
 {
     public:
