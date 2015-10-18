@@ -9,8 +9,8 @@ SociDbConnection::SociDbConnection()
     m_type = "SOCI";
     m_isConnected = false;
 
-    CustomObjectDaoSoci* customObject = new CustomObjectDaoSoci(this);
-    m_customObjectDao = std::shared_ptr<CustomObjectDaoSoci>(customObject);
+    CustomObjectDaoSoci* customObjectDao = new CustomObjectDaoSoci(this);
+    m_customObjectDao = std::shared_ptr<CustomObjectDaoSoci>(customObjectDao);
 }
 
 SociDbConnection::~SociDbConnection()
@@ -31,9 +31,4 @@ bool SociDbConnection::connect(DatabaseDriver connectionDriver, std::string host
         return false;
     }
 }
-
-std::shared_ptr<CustomObjectDao> SociDbConnection::customObjectDao(){
-    return m_customObjectDao;
-}
-
 };

@@ -12,7 +12,7 @@ class CustomObjectDaoSoci : public CustomObjectDao
     public:
         CustomObjectDaoSoci(SociDbConnection* sociDbConnection);
 
-        bool load(std::string table, std::string filter, CustomObject& output);
+        bool load(std::string table, std::string filter, CustomObject* output = 0);
         bool save(const CustomObject& object, const std::string& table);
 
     protected:

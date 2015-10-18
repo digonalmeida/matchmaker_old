@@ -7,10 +7,9 @@
 #include <soci/session.h>
 
 #include "dbconnection.h"
+#include "customobjectdaosoci.h"
 
 namespace mm{
-
-class CustomObjectDaoSoci;
 
 class SociDbConnection : public DbConnection {
     public:
@@ -24,7 +23,7 @@ class SociDbConnection : public DbConnection {
         ~SociDbConnection();
 
         std::shared_ptr<soci::session> session() { return m_session; }
-        std::shared_ptr<CustomObjectDao> customObjectDao();
+        std::shared_ptr<CustomObjectDao> customObjectDao() { return static_pointer_cast<CustomObjectDao>(m_customObjectDao); }
 
     protected:
         std::shared_ptr<CustomObjectDaoSoci> m_customObjectDao;
