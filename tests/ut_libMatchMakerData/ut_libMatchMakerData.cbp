@@ -61,6 +61,10 @@
 		<Unit filename="ut_customobject.cpp" />
 		<Unit filename="ut_customobjectdao.cpp" />
 		<Unit filename="ut_databasemanager.cpp" />
+		<Unit filename="ut_match.cpp" />
+		<Unit filename="ut_profile.cpp" />
+		<Unit filename="ut_request.cpp" />
+		<Unit filename="ut_room.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
