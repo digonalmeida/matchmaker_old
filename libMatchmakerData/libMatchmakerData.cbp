@@ -72,10 +72,18 @@
 		<Unit filename="include/matchmakerdata/customobjectdaosoci.h" />
 		<Unit filename="include/matchmakerdata/dbconnection.h" />
 		<Unit filename="include/matchmakerdata/dbconnectionfactory.h" />
+		<Unit filename="include/matchmakerdata/match.h" />
+		<Unit filename="include/matchmakerdata/profile.h" />
+		<Unit filename="include/matchmakerdata/request.h" />
+		<Unit filename="include/matchmakerdata/room.h" />
 		<Unit filename="include/matchmakerdata/socidbconnection.h" />
 		<Unit filename="src/customobject.cpp" />
 		<Unit filename="src/customobjectdaosoci.cpp" />
 		<Unit filename="src/dbconnectionfactory.cpp" />
+		<Unit filename="src/match.cpp" />
+		<Unit filename="src/profile.cpp" />
+		<Unit filename="src/request.cpp" />
+		<Unit filename="src/room.cpp" />
 		<Unit filename="src/socidbconnection.cpp" />
 		<Extensions>
 			<code_completion />
