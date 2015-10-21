@@ -14,7 +14,7 @@ TEST(Profile, setId){
 	mm::Profile profile;
 	profile.setId(10);
 	int id = profile.id();
-	EXPECT_EQUAL(id, 10);
+	EXPECT_EQ(id, 10);
 }
 
 TEST(Profile, setNameProperty){
@@ -22,10 +22,10 @@ TEST(Profile, setNameProperty){
 	profile.addField("name");
 	profile.setName("Rodrigo");
 	std::string name = profile.name();
-	EXPECT_EQUAL(name, "Rodrigo");
+	EXPECT_EQ(name, "Rodrigo");
 }
 TEST(Profile, nullNameProperty){
-	mm_Profile profile;
+	mm::Profile profile;
 	std::string name = profile.name();
-	EXPECT_EQUAL(name, "");
+	EXPECT_EQ(name, "");
 }
