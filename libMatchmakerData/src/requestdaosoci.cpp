@@ -24,6 +24,14 @@ bool RequestDaoSoci::saveRequest(Request& request){
         request.addField("id_profile");
         request.set<int>("id_profile", request.profileId());
     }
+    if(request.roomId() == CustomObject::nullId){
+        request.setNull("id_room");
+    }
+    else
+    {
+        request.addField("id_room");
+        request.set<int>("id_room", request.roomId());
+    }
 
     request.addField("date_time");
     request.set<std::tm>("date_time", request.dateTime());
@@ -47,6 +55,10 @@ bool RequestDaoSoci::loadRequest(Request& request){
     if(!request.isNull("state"))
     {
         request.setState(request.get<std::string>("state"));
+    }
+    if(!request.isNull("id_room"))
+    {
+        request.setRoomId(request.get<int>("id_room"));
     }
     return loaded;
 }

@@ -22,6 +22,7 @@ public:
     void setProfileId(int id);
     void setState(std::string s);
     void setDateTime(const std::tm& dateTime);
+    void setRoomId(int id);
 
 private:
     int m_profileId;

@@ -41,4 +41,9 @@ void Request::setDateTime(const std::tm& dateTime)
 {
     m_dateTime = dateTime;
 }
+
+void Request::setRoomId(int roomId)
+{
+    m_roomId = roomId;
+}
 };
