@@ -16,6 +16,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include/matchmakerdata" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +27,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include/matchmakerdata" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -33,23 +35,26 @@
 			</Target>
 			<Target title="libMatchmakerData">
 				<Option output="bin/matchmakerdata" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin" />
 				<Option object_output="obj/libMatchmakerData/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option host_application="xterm -t /home/rodrigo/dev/matchmaker/tests/ut_libMatchMakerData/bin/Release/ut_libMatchMakerData" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
+					<Add option="-fPIC" />
 					<Add directory="include/matchmakerdata" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="../tests/ut_libMatchMakerData/bin/Debug/ut_libMatchMakerData" />
+					<Add after="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:/home/rodrigo/dev/matchmaker/libMatchmakerData/bin ; ../tests/ut_libMatchMakerData/bin/Debug/ut_libMatchMakerData" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -73,17 +78,34 @@
 		<Unit filename="include/matchmakerdata/dbconnection.h" />
 		<Unit filename="include/matchmakerdata/dbconnectionfactory.h" />
 		<Unit filename="include/matchmakerdata/match.h" />
+		<Unit filename="include/matchmakerdata/matchdao.h" />
+		<Unit filename="include/matchmakerdata/matchdaosoci.h" />
 		<Unit filename="include/matchmakerdata/profile.h" />
+		<Unit filename="include/matchmakerdata/profiledao.h" />
+		<Unit filename="include/matchmakerdata/profiledaosoci.h" />
 		<Unit filename="include/matchmakerdata/request.h" />
+		<Unit filename="include/matchmakerdata/requestdao.h" />
+		<Unit filename="include/matchmakerdata/requestdaosoci.h" />
 		<Unit filename="include/matchmakerdata/room.h" />
+		<Unit filename="include/matchmakerdata/roomdao.h" />
+		<Unit filename="include/matchmakerdata/roomdaosoci.h" />
 		<Unit filename="include/matchmakerdata/socidbconnection.h" />
 		<Unit filename="src/customobject.cpp" />
+		<Unit filename="src/customobjectdao.cpp" />
 		<Unit filename="src/customobjectdaosoci.cpp" />
 		<Unit filename="src/dbconnectionfactory.cpp" />
 		<Unit filename="src/match.cpp" />
+		<Unit filename="src/matchdao.cpp" />
+		<Unit filename="src/matchdaosoci.cpp" />
 		<Unit filename="src/profile.cpp" />
+		<Unit filename="src/profiledao.cpp" />
+		<Unit filename="src/profiledaosoci.cpp" />
 		<Unit filename="src/request.cpp" />
+		<Unit filename="src/requestdao.cpp" />
+		<Unit filename="src/requestdaosoci.cpp" />
 		<Unit filename="src/room.cpp" />
+		<Unit filename="src/roomdao.cpp" />
+		<Unit filename="src/roomdaosoci.cpp" />
 		<Unit filename="src/socidbconnection.cpp" />
 		<Extensions>
 			<code_completion />

@@ -9,20 +9,19 @@ namespace mm
 class Room : public CustomObject
 {
 public:
-    static int nullId;
     static std::string nullAddress;
     Room();
-    int id() const;
     std::string serverAddress() const ;
     bool available() const;
+    int matchId() const;
 
-    void setId(int id);
     void setServerAddress(const std::string &serverAddress);
     void setAvailable(bool available);
+    void setMatchId(int m);
 private:
-    int m_id;
     std::string m_serverAddress;
     bool m_available;
+    int m_matchId;
 };
 };
 

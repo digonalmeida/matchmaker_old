@@ -8,28 +8,47 @@
 
 #include "dbconnection.h"
 #include "customobjectdaosoci.h"
+#include "matchdaosoci.h"
+#include "profiledaosoci.h"
+#include "requestdaosoci.h"
+#include "roomdaosoci.h"
 
-namespace mm{
+namespace mm
+{
 
-class SociDbConnection : public DbConnection {
-    public:
-        SociDbConnection();
+class SociDbConnection : public DbConnection
+{
+public:
+    SociDbConnection();
 
-        enum DatabaseDriver{
-            POSTGRESQL
-        };
+    enum DatabaseDriver
+    {
+        NONE,
+        POSTGRESQL
+    };
 
-        bool connect(DatabaseDriver driver, std::string host, std::string user, std::string pass, std::string database);
-        ~SociDbConnection();
+    bool connect(DatabaseDriver driver, std::string host, std::string user, std::string pass, std::string database);
+    ~SociDbConnection();
 
-        std::shared_ptr<soci::session> session() { return m_session; }
-        std::shared_ptr<CustomObjectDao> customObjectDao() { return static_pointer_cast<CustomObjectDao>(m_customObjectDao); }
+    std::shared_ptr<soci::session> session();
+    std::shared_ptr<CustomObjectDao> customObjectDao();
+    std::shared_ptr<MatchDao> matchDao();
+    std::shared_ptr<ProfileDao> profileDao();
+    std::shared_ptr<RequestDao> requestDao();
+    std::shared_ptr<RoomDao> roomDao();
 
-    protected:
-        std::shared_ptr<CustomObjectDaoSoci> m_customObjectDao;
+    DatabaseDriver databaseDriver();
 
-    private:
-        std::shared_ptr<soci::session> m_session;
+protected:
+    std::shared_ptr<CustomObjectDaoSoci> m_customObjectDao;
+    std::shared_ptr<MatchDaoSoci> m_matchDao;
+    std::shared_ptr<ProfileDaoSoci> m_profileDao;
+    std::shared_ptr<RequestDaoSoci> m_requestDao;
+    std::shared_ptr<RoomDaoSoci> m_roomDao;
+
+private:
+    std::shared_ptr<soci::session> m_session;
+    DatabaseDriver m_driver;
 };
 
 };

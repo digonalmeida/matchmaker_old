@@ -9,16 +9,13 @@ namespace mm
 class Profile : public CustomObject
 {
 public:
-    static int nullId;
     Profile();
-    int id() const;
     std::string name() const;
 
-    void setId(int id);
     void setName(const std::string& name);
 
 private:
-    int m_id;
+    std::string m_name;
 };
 
 };

@@ -1,24 +1,42 @@
 #ifndef CUSTOMOBJECTDAOSOCI_H
 #define CUSTOMOBJECTDAOSOCI_H
+#include <soci.h>
 
 #include "customobjectdao.h"
 
-namespace mm{
+namespace mm
+{
 
 class SociDbConnection;
 
-class CustomObjectDaoSoci : public CustomObjectDao
+class CustomObjectDaoSoci : public virtual CustomObjectDao
 {
-    public:
-        CustomObjectDaoSoci(SociDbConnection* sociDbConnection);
+public:
+    CustomObjectDaoSoci(SociDbConnection* sociDbConnection);
 
-        bool load(std::string table, std::string filter, CustomObject* output = 0);
-        bool save(const CustomObject& object, const std::string& table);
+    bool loadCustomPropertiesWithFilter(const std::string& table, const std::string& filter, CustomObject& output) override;
+    std::vector<int> queryIds(const std::string& table, const std::string& filter, int max, bool* ok = 0) override;
+    bool remove(const std::string& table, const std::string& filter);
 
-    protected:
-        SociDbConnection* m_sociDbConnection;
+protected:
+    SociDbConnection* m_sociDbConnection;
+    bool updateObject(const std::string& table, CustomObject& object);
+    bool insertObject(const std::string& table, CustomObject& object);
 
-    private:
+private:
+    struct StatementMapping{
+        std::map<std::string, int> intValues;
+        std::map<std::string, std::string> strValues;
+        std::map<std::string, double> doubleValues;
+        std::map<std::string, std::tm> tmValues;
+        std::map<std::string, long> longValues;
+        std::map<std::string, long long> llongValues;
+        std::map<std::string, unsigned long long> ullongValues;
+    };
+    void statementExchange(soci::statement& statement,
+                            CustomObject& object,
+                            const std::string& field,
+                            StatementMapping& mapping);
 };
 
 }

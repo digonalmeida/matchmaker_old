@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include "customobject.h"
+#include <ctime>
 
 namespace mm
 {
@@ -10,18 +11,22 @@ class Match : public CustomObject
 {
 public:
     Match();
-    static int nullId;
-    int id() const;
+
     const std::vector<int> team(unsigned int teamId) const;
     int playersCount() const;
     int teamsCount() const;
+    std::tm creationDateTime() const;
 
-    void setId(int i);
-    void addTeam(const std::vector<int>& team);
+    //returns new team id
+    int addTeam(const std::vector<int>& team);
+    void addTeamWithId(const std::vector<int>& team, int teamId);
+    void addPlayer(int playerId, int teamId);
+    void setCreationDateTime(const std::tm& creationDateTime);
 
 private:
-    int m_id;
-    std::vector< std::vector<int> > m_teams;
+    //team_id, team
+    std::map<int, std::vector<int> > m_teams;
+    std::tm m_creationDateTime;
 
 };
 };

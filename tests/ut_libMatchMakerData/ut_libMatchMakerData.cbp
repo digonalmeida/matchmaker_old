@@ -48,6 +48,7 @@
 			<Add directory="../../libMatchmakerData/include" />
 			<Add directory="/usr/local/include/soci" />
 			<Add directory="/usr/include/postgresql/" />
+			<Add directory="/home/rodrigo/dev/matchmaker/libMatchmakerData/bin" />
 		</Compiler>
 		<Linker>
 			<Add option="-lgtest" />
@@ -55,16 +56,22 @@
 			<Add option="-lmatchmakerdata" />
 			<Add option="-lsoci_core" />
 			<Add option="-lsoci_postgresql" />
-			<Add directory="../../libMatchmakerData/bin" />
+			<Add directory="/home/rodrigo/dev/matchmaker/libMatchmakerData/bin" />
 		</Linker>
+		<Unit filename="loadConnection.cpp" />
+		<Unit filename="loadConnection.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="ut_customobject.cpp" />
 		<Unit filename="ut_customobjectdao.cpp" />
 		<Unit filename="ut_databasemanager.cpp" />
 		<Unit filename="ut_match.cpp" />
+		<Unit filename="ut_matchdao.cpp" />
 		<Unit filename="ut_profile.cpp" />
+		<Unit filename="ut_profiledao.cpp" />
 		<Unit filename="ut_request.cpp" />
+		<Unit filename="ut_requestdao.cpp" />
 		<Unit filename="ut_room.cpp" />
+		<Unit filename="ut_roomdao.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

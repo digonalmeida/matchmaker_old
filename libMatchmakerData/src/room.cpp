@@ -3,17 +3,13 @@
 
 namespace mm
 {
-int Room::nullId = -1;
+
 std::string Room::nullAddress = "";
 
-Room::Room(){
-    m_id = Room::nullId;
-    m_available = false;
-}
-
-int Room::id() const
+Room::Room()
 {
-    return m_id;
+    m_available = false;
+    m_matchId = CustomObject::nullId;
 }
 
 std::string Room::serverAddress() const
@@ -26,10 +22,6 @@ bool Room::available() const
     return m_available;
 }
 
-void Room::setId(int id){
-    m_id = id;
-}
-
 void Room::setServerAddress(const std::string& serverAddress)
 {
     m_serverAddress = serverAddress;
@@ -38,5 +30,15 @@ void Room::setServerAddress(const std::string& serverAddress)
 void Room::setAvailable(bool available)
 {
     m_available = available;
+}
+
+int Room::matchId() const
+{
+    return m_matchId;
+}
+
+void Room::setMatchId(int id)
+{
+    m_matchId = id;
 }
 };

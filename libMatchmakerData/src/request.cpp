@@ -2,30 +2,43 @@
 #include "profile.h"
 namespace mm
 {
-int Request::nullId = -1;
 
 Request::Request()
 {
-    m_id = Request::nullId;
     m_profileId = Profile::nullId;
+    m_state = ' ';
+
+    time_t currentTime = time(0);
+    m_dateTime = *localtime(&currentTime);
 }
 
-int Request::id()
+int Request::profileId()
 {
-    return m_id;
-}
-
-void Request::setId(int id)
-{
-    m_id = id;
-}
-
-int Request::profileId(){
     return m_profileId;
 }
 
-void Request::setProfileId(int id){
+void Request::setProfileId(int id)
+{
     m_profileId = id;
 }
 
+std::string Request::state()
+{
+    return m_state;
+}
+
+void Request::setState(std::string s)
+{
+    m_state = s;
+}
+
+std::tm Request::dateTime() const
+{
+    return m_dateTime;
+}
+
+void Request::setDateTime(const std::tm& dateTime)
+{
+    m_dateTime = dateTime;
+}
 };

@@ -8,7 +8,23 @@
 #include <exception>
 //using namespace std;
 
-TEST (CustomObject, addField) {
+TEST(CustomObject, getNullId)
+{
+    mm::CustomObject customObject;
+    bool isNull = customObject.id() == mm::CustomObject::nullId;
+    EXPECT_TRUE(isNull);
+}
+
+TEST(Match, setId)
+{
+    mm::CustomObject customObject;
+    customObject.setId(10);
+    int id = customObject.id();
+    EXPECT_EQ(id, 10);
+}
+
+TEST (CustomObject, addField)
+{
     mm::CustomObject customObject;
     std::string s;
     EXPECT_FALSE(customObject.contains("field"));
@@ -16,7 +32,8 @@ TEST (CustomObject, addField) {
     EXPECT_TRUE(customObject.contains("field"));
 }
 
-TEST(CustomObject, setValue){
+TEST(CustomObject, setValue)
+{
 
     mm::CustomObject customObject;
     customObject.addField("field");
@@ -28,7 +45,9 @@ TEST(CustomObject, setValue){
     EXPECT_EQ(fieldValue, std::string("teste"));
 }
 
-TEST(CustomObject, getNullValue){
+
+TEST(CustomObject, getNullValue)
+{
 
     mm::CustomObject customObject;
     customObject.addField("field");
@@ -37,7 +56,8 @@ TEST(CustomObject, getNullValue){
     EXPECT_THROW(customObject.value<std::string>("field"), mm::Null_Field);
 }
 
-TEST(CustomObject, getValue){
+TEST(CustomObject, getValue)
+{
     mm::CustomObject customObject;
     customObject.addField("field");
     customObject.set<std::string>("field", "valor");
@@ -45,7 +65,17 @@ TEST(CustomObject, getValue){
     EXPECT_EQ(fieldValue, std::string("valor"));
 }
 
-TEST(Boost, optionalNull){
+TEST(Boost, optionalNull)
+{
     boost::optional<boost::any> c = boost::none;
     EXPECT_FALSE(c);
+}
+
+TEST (CustomObject, fieldType)
+{
+    mm::CustomObject customObject;
+
+    customObject.addField("name");
+    customObject.set<std::string>("name", "teste");
+    EXPECT_EQ(mm::CustomObject::FIELD_TYPE_STRING, customObject.getFieldType("name"));
 }
